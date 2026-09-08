@@ -67,6 +67,9 @@ install() {
   # wait_for_ansible after python is mounted
   inst_hook pre-mount 95 "$moddir/wait_for_ansible_finished.sh"
 
+  # umount tuxifier-python.squashfs
+  inst_hook cleanup 05 "$moddir/umount-tuxifier-python.sh"
+
   # check if internal-sftp is enabled otherwise enable it here
   if ! grep -q internal-sftp "${initdir}"/etc/ssh/sshd_config; then
     mv "${initdir}/etc/ssh/sshd_config" "${initdir}/etc/ssh/sshd_config.bak"
