@@ -26,6 +26,7 @@ install() {
   inst /usr/bin/dirname
   inst chmod
   inst date
+  inst ldconfig # required for library resolution python ctypes.util
 
   # glibc installation
   #   glibc core
