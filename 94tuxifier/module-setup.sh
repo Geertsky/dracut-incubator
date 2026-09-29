@@ -19,7 +19,7 @@ depends() {
 install() {
 
   if [ ! -f "${moddir}/python-nest.squashfs" ]; then
-    dfatal "Missing ${moddir}/python-nest.squashfs. See dracut-tuxifier/conda-recipes/python-nest.yml"
+    dfatal "Missing ${moddir}/python-nest.squashfs. See dracut-incubator/conda-recipes/python-nest.yml"
     return 1
   fi
   # dirname is needed for conda/bin/activate... Not required but useful for debugging

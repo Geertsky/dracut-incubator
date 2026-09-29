@@ -13,9 +13,9 @@ This combination makes it possible to use [ansible](https://docs.ansible.com/) t
 or<br>
 * continue the boot to the freshly installed OS and continue your ansible playbook from there.
 
-## Installing the dracut-tuxifier module
+## Installing the dracut-incubator module
 
-* Clone this repository and copy or link the `dracut-tuxifier/94tuxifier` directory to the `/usr/lib/dracut/modules.d/` directory.
+* Clone this repository and copy or link the `dracut-incubator/94tuxifier` directory to the `/usr/lib/dracut/modules.d/` directory.
 
 * Download the pre-packaged [python-nest.squashfs](https://verweggistan.eu/python-nest.squashfs) <br>
 and place it in `/usr/lib/dracut/modules.d/94tuxifier/`
