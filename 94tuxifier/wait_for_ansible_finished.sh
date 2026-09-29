@@ -1,5 +1,5 @@
 #!/usr/bin/sh
-export PATH=$PATH:/local/conda/envs/tuxifier-python/bin
+export PATH=$PATH:/local/conda/envs/python-nest/bin
 
 type info >/dev/null 2>&1 || . /lib/dracut-lib.sh
 info "Waiting for Ansible to create me a roofs..."

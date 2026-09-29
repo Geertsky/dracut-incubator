@@ -18,8 +18,8 @@ depends() {
 # called by dracut
 install() {
 
-  if [ ! -f "${moddir}/tuxifier-python.squashfs" ]; then
-    dfatal "Missing ${moddir}/tuxifier-python.squashfs. See dracut-tuxifier/conda-recipes/tuxifier-python.yml"
+  if [ ! -f "${moddir}/python-nest.squashfs" ]; then
+    dfatal "Missing ${moddir}/python-nest.squashfs. See dracut-tuxifier/conda-recipes/python-nest.yml"
     return 1
   fi
   # dirname is needed for conda/bin/activate... Not required but useful for debugging
@@ -57,19 +57,19 @@ install() {
     dinfo "Add shadow entry for root"
     echo "root:*:::::::" >> "$initdir/etc/shadow"
   fi
-  # Add mount hook and install tuxifier-python.squashfs
+  # Add mount hook and install python-nest.squashfs
   mkdir -p "${initdir}/local/conda/images"
-  mkdir -p "${initdir}/local/conda/envs/tuxifier-python"
+  mkdir -p "${initdir}/local/conda/envs/python-nest"
   inst /etc/nsswitch.conf
 
-  inst "${moddir}/tuxifier-python.squashfs" "/local/conda/images/tuxifier-python.squashfs"
+  inst "${moddir}/python-nest.squashfs" "/local/conda/images/python-nest.squashfs"
   inst_hook initqueue 50 "$moddir/mount-conda-squashfs.sh"
 
   # wait_for_ansible after python is mounted
   inst_hook pre-mount 95 "$moddir/wait_for_ansible_finished.sh"
 
-  # umount tuxifier-python.squashfs
-  inst_hook cleanup 05 "$moddir/umount-tuxifier-python.sh"
+  # umount python-nest.squashfs
+  inst_hook cleanup 05 "$moddir/umount-python-nest.sh"
 
   # check if internal-sftp is enabled otherwise enable it here
   if ! grep -q internal-sftp "${initdir}"/etc/ssh/sshd_config; then

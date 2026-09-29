@@ -2,8 +2,8 @@
 
 . /lib/dracut-lib.sh
 
-_img="/local/conda/images/tuxifier-python.squashfs"
-_mountpoint="/local/conda/envs/tuxifier-python"
+_img="/local/conda/images/python-nest.squashfs"
+_mountpoint="/local/conda/envs/python-nest"
 
 [ -r "$_img" ] || die "Missing Conda squashfs image: $_img"
 

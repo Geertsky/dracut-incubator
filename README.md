@@ -3,7 +3,7 @@ This [dracut](https://dracut.wiki.kernel.org/index.php/Main_Page) module is crea
 
 It features the following:
 * It depends on the [dracut-sshd](https://github.com/gsauthof/dracut-sshd) module.
-* It includes a `python` [conda](https://conda-forge.org/docs/) environment with [parted](https://www.gnu.org/software/parted/) and some other basic tools in the initial ramdisk. By packaging a conda environment. (See: [tuxifier-python](https://github.com/Geertsky/tuxifier-python))
+* It includes a `python` [conda](https://conda-forge.org/docs/) environment with [parted](https://www.gnu.org/software/parted/) and some other basic tools in the initial ramdisk. By packaging a conda environment. (See: [python-nest](https://github.com/Geertsky/python-nest))
 * It pauses the boot process just before the root filesystem gets mounted _(dracut `pre-mount` hook)_
 
 This combination makes it possible to use [ansible](https://docs.ansible.com/) to:
@@ -17,12 +17,12 @@ or<br>
 
 * Clone this repository and copy or link the `dracut-tuxifier/94tuxifier` directory to the `/usr/lib/dracut/modules.d/` directory.
 
-* Download the pre-packaged [tuxifier-python.squashfs](https://verweggistan.eu/tuxifier-python.squashfs) <br>
+* Download the pre-packaged [python-nest.squashfs](https://verweggistan.eu/python-nest.squashfs) <br>
 and place it in `/usr/lib/dracut/modules.d/94tuxifier/`
 
 **Or** <br>
 
-* build and modify the `tuxifier-python.squashfs` as described here: [tuxifier-python](https://github.com/Geertsky/tuxifier-python) <br>
+* build and modify the `python-nest.squashfs` as described here: [python-nest](https://github.com/Geertsky/python-nest) <br>
 and place it in `/usr/lib/dracut/modules.d/94tuxifier/`
 ## Building the initramfs
 
