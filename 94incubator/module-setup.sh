@@ -62,6 +62,7 @@ install() {
   mkdir -p "${initdir}/local/conda/envs/python-nest"
   inst /etc/nsswitch.conf
 
+  inst_hook initqueue 05 "$moddir/defer-root-wait.sh"
   inst "${moddir}/python-nest.squashfs" "/local/conda/images/python-nest.squashfs"
   inst_hook initqueue 50 "$moddir/mount-conda-squashfs.sh"
 
