@@ -3,7 +3,7 @@ This [dracut](https://dracut.wiki.kernel.org/index.php/Main_Page) module is crea
 
 It features the following:
 * It depends on the [dracut-sshd](https://github.com/gsauthof/dracut-sshd) module.
-* It includes a `python` [conda](https://conda-forge.org/docs/) environment with [parted](https://www.gnu.org/software/parted/) and some other basic tools in the initial ramdisk. By packaging a conda environment. (See: [python-nest](https://github.com/Geertsky/python-nest))
+* It includes a `python` [conda](https://conda-forge.org/docs/) environment with support for [linux-system-roles.storage](https://github.com/linux-system-roles/storage) and some other basic tools in the initial ramdisk. By packaging a conda environment. (See: [python-nest](https://github.com/Geertsky/python-nest))
 * It pauses the boot process just before the root filesystem gets mounted _(dracut `pre-mount` hook)_
 
 This combination makes it possible to use [ansible](https://docs.ansible.com/) to:
