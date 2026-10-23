@@ -43,7 +43,7 @@ The extra dracut modules determine which storage layouts [linux-system-roles.sto
 `mdraid` requires `mdadm` to be installed on the system the initramfs is built on. Without the md udev rules the storage role fails with `mdadm: /dev/vdX is busy - skipping`.
 
 >[!NOTE]
->These modules only provide the tools in the initramfs. The installed system needs `cryptsetup` and `mdadm`, an `/etc/crypttab` and `/etc/mdadm.conf`, and a regenerated initramfs, to assemble RAID and unlock LUKS volumes at boot.
+>These modules only provide the tools in the initramfs used for the install. For the installed system the [tuxifier](https://github.com/Geertsky/tuxifier) role installs `cryptsetup` and `mdadm`, writes `/etc/crypttab` and `/etc/mdadm.conf` from the devices it created, and the kernel package builds the initramfs of the installed system, which selects the `crypt` and `mdraid` modules itself.
 
 ## Booting the incubator-initramfs
 The initramfs file together with it's kernel need to be fed to the server by any way possible. For instance: PXE, virt-manager Direct kernel boot, customized grub.
