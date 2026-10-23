@@ -15,24 +15,37 @@ or<br>
 
 ## Installing the dracut-incubator module
 
-* Clone this repository and copy or link the `dracut-incubator/94tuxifier` directory to the `/usr/lib/dracut/modules.d/` directory.
+* Clone this repository and copy or link the `dracut-incubator/94incubator` directory to the `/usr/lib/dracut/modules.d/` directory.
 
 * Download the pre-packaged [python-nest.squashfs](https://verweggistan.eu/python-nest.squashfs) <br>
-and place it in `/usr/lib/dracut/modules.d/94tuxifier/`
+and place it in `/usr/lib/dracut/modules.d/94incubator/`
 
 **Or** <br>
 
 * build and modify the `python-nest.squashfs` as described here: [python-nest](https://github.com/Geertsky/python-nest) <br>
-and place it in `/usr/lib/dracut/modules.d/94tuxifier/`
+and place it in `/usr/lib/dracut/modules.d/94incubator/`
 ## Building the initramfs
 
 The initramfs image can be built using the following command:
 
 ```
-sudo dracut -NM -a "tuxifier network" ansible-tuxifier-initramfs-$(uname -r).img $(uname -r)
+sudo dracut -NM -a "incubator network lvm mdraid crypt" incubator-initramfs-$(uname -r).img $(uname -r)
 ```
 
-## Booting the ansible-tuxifier-initramfs
+The extra dracut modules determine which storage layouts [linux-system-roles.storage](https://github.com/linux-system-roles/storage) can build in the initramfs:
+
+| dracut module | adds | enables |
+|---------------|------|---------|
+| `lvm`         | `lvm2` tools and udev rules | LVM volume groups and logical volumes |
+| `crypt`       | `cryptsetup` and its libraries | LUKS encrypted volumes |
+| `mdraid`      | `mdadm`, the md udev rules (`63-md-raid-arrays.rules`, `64-md-raid-assembly.rules`) and the `raid*` and `dm-raid` kernel modules | md RAID (`type: raid`, or `raid_level` on an `lvm` pool) and LVM RAID volumes |
+
+`mdraid` requires `mdadm` to be installed on the system the initramfs is built on. Without the md udev rules the storage role fails with `mdadm: /dev/vdX is busy - skipping`.
+
+>[!NOTE]
+>These modules only provide the tools in the initramfs. The installed system needs `cryptsetup` and `mdadm`, an `/etc/crypttab` and `/etc/mdadm.conf`, and a regenerated initramfs, to assemble RAID and unlock LUKS volumes at boot.
+
+## Booting the incubator-initramfs
 The initramfs file together with it's kernel need to be fed to the server by any way possible. For instance: PXE, virt-manager Direct kernel boot, customized grub.
 
 ### Required boot arguments
