@@ -12,7 +12,7 @@ check() {
 
 # called by dracut
 depends() {
-  echo "sshd"
+  echo "sshd network mdraid crypt"
 }
 
 # called by dracut
@@ -22,7 +22,6 @@ install() {
     dfatal "Missing ${moddir}/python-nest.squashfs. See https://github.com/Geertsky/python-nest"
     return 1
   fi
-  # dirname is needed for conda/bin/activate... Not required but useful for debugging
   inst /usr/bin/dirname
   inst chmod
   inst date
