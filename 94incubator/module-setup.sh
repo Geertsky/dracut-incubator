@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 2023, Geert Geurts <geert@verweggistan.eu>
-# SPDX-License-Identifier: BSD
+# SPDX-License-Identifier: EUPL-1.2
 
 # called by dracut
 check() {
